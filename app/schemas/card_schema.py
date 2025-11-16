@@ -7,8 +7,8 @@ class CardList(BaseModel):
 
 
 class Card(BaseModel):
+    id: str
     name: str
-    rarity: Optional[str] = None
     colors: Optional[str] = None
     color_identity: Optional[str] = None
     cmc: Optional[str] = None

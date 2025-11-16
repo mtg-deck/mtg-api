@@ -11,5 +11,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
-print("DATABASE_URL carregada:", settings.DATABASE_URL)
