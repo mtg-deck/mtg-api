@@ -33,9 +33,8 @@ async def get_autocomplete(card_name: str, amount: int = 20, pool: Pool | None =
     query = """
         SELECT *
         FROM cards
-        WHERE name ILIKE ($1 || '%')
-           OR name % $1
-        ORDER BY similarity(name, $1) DESC
+        WHERE name ILIKE '%' || '$1' || '%'
+        ORDER BY similarity(name, '$1') DESC
         LIMIT $2
     """
 
