@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.security.auth import validate_client
-from app.schemas.card_schema import Card, CardList, CardListResponse
+from app.schemas.card_schema import Card, CardList, CardListResponse, CommanderList
 from app.services.card_service import (
     get_card,
     get_autocomplete,
@@ -40,7 +40,7 @@ async def retrieve(
     return card
 
 
-@router.get("/topcommanders", response_model=CardListResponse)
+@router.get("/topcommanders", response_model=CommanderList)
 async def topcommanders(
     pool: Pool = Depends(get_db_pool), client=Depends(validate_client)
 ):

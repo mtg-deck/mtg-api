@@ -28,5 +28,5 @@ class CardListResponse(BaseModel):
     cards: list[Card]
 
 
-class CommaderList(BaseModel):
+class CommanderList(BaseModel):
     cards: list[Commander]
