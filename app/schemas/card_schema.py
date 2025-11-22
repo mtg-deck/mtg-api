@@ -18,6 +18,7 @@ class Card(BaseModel):
     legal_commanders: Optional[bool] = None
     price: Optional[str] = None
     is_commander: Optional[bool] = None
+    edhrec_rank: Optional[int] = None
 
 
 class Commander(Card):
