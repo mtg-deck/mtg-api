@@ -78,6 +78,7 @@ async def get_top_commanders(pool: Pool):
     SELECT cards.*, top_commanders.rank as commander_rank
     FROM cards
     INNER JOIN top_commanders ON cards.name = top_commanders.name
+    ORDER BY top_commanders.rank ASC
     """
     if not pool:
         raise RuntimeError("Pool não inicializado, chame connect_to_db() primeiro")

@@ -20,5 +20,13 @@ class Card(BaseModel):
     is_commander: Optional[bool] = None
 
 
+class Commander(Card):
+    commander_rank: Optional[int] = None
+
+
 class CardListResponse(BaseModel):
     cards: list[Card]
+
+
+class CommaderList(BaseModel):
+    cards: list[Commander]
