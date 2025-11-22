@@ -30,7 +30,7 @@ async def autocomplete(
     return cards
 
 
-@router.get("/{card_name}", response_model=Card)
+@router.get("/named/{card_name}", response_model=Card)
 async def retrieve(
     card_name: str, pool: Pool = Depends(get_db_pool), client=Depends(validate_client)
 ):
