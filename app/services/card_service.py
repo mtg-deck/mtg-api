@@ -71,3 +71,16 @@ async def get_autocomplete_auto(card_name: str, pool: Pool, amount: int = 20):
         return await get_autocomplete(card_name, amount, pool=pool)
     else:
         return await get_autocomplete_prefix(card_name, amount, pool=pool)
+
+
+async def get_top_commanders(pool: Pool):
+    query = """
+    SELECT cards.*, top_commanders.rank as commander_rank
+    FROM cards
+    INNER JOIN top_commanders ON cards.name = top_commanders.name
+    """
+    if not pool:
+        raise RuntimeError("Pool não inicializado, chame connect_to_db() primeiro")
+    async with pool.acquire() as conn:
+        rows = await conn.fetch(query)
+        return {"cards": [dict(r) for r in rows]}

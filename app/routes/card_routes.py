@@ -5,6 +5,7 @@ from app.services.card_service import (
     get_card,
     get_autocomplete,
     get_many_cards,
+    get_top_commanders,
 )
 from app.database import get_db_pool
 from asyncpg import Pool
@@ -37,3 +38,10 @@ async def retrieve(
     if not card:
         raise HTTPException(404)
     return card
+
+
+@router.get("/topcommanders", response_model=CardListResponse)
+async def topcommanders(
+    pool: Pool = Depends(get_db_pool), client=Depends(validate_client)
+):
+    return await get_top_commanders(pool=pool)
