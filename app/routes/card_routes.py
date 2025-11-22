@@ -24,6 +24,8 @@ async def create(
 async def autocomplete(
     card_name: str, pool: Pool = Depends(get_db_pool), client=Depends(validate_client)
 ):
+    if not card_name or len(card_name) <= 2:
+        return {"cards": []}
     cards = await get_autocomplete(card_name, pool=pool)
     if not cards:
         raise HTTPException(404)

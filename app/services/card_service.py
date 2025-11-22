@@ -33,8 +33,8 @@ async def get_autocomplete(card_name: str, amount: int = 20, pool: Pool | None =
     query = """
         SELECT *
         FROM cards
-        WHERE name ILIKE '%' || '$1' || '%'
-        ORDER BY similarity(name, '$1') DESC
+        WHERE name ILIKE '%' || $1 || '%'
+        ORDER BY similarity(name, $1) DESC
         LIMIT $2
     """
 
@@ -67,10 +67,7 @@ async def get_autocomplete_prefix(
 
 
 async def get_autocomplete_auto(card_name: str, pool: Pool, amount: int = 20):
-    if len(card_name) < 3:
-        return await get_autocomplete(card_name, amount, pool=pool)
-    else:
-        return await get_autocomplete_prefix(card_name, amount, pool=pool)
+    return await get_autocomplete(card_name, amount, pool=pool)
 
 
 async def get_top_commanders(pool: Pool):
