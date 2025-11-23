@@ -19,6 +19,7 @@ class Card(BaseModel):
     price: Optional[str] = None
     is_commander: Optional[bool] = None
     edhrec_rank: Optional[int] = None
+    type_line: Optional[str] = None
 
 
 class Commander(Card):
